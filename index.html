@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+  <!-- 龍捲風 -->
+  <canvas id="wind"></canvas>
+
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+   
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@400;700&family=Noto+Sans+TC:wght@100&family=Noto+Serif+TC:wght@200;500&family=Pacifico&family=Permanent+Marker&display=swap');
+    body {
+      
+        font-family: 'Noto Sans HK', sans-serif;
+        font-family: 'Noto Sans TC', sans-serif;
+        font-family: 'Noto Serif TC', serif;
+        font-family: 'Pacifico', cursive;
+        font-family: 'Permanent Marker', cursive;
+   
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    };
+    /* 龍捲風 */
+    html,body {
+            margin:0px;
+        
+            background:#000;
+       
+            background-repeat: repeat-y;
+        }
+          /* 龍捲風 */
+   
+    img{
+      transition: .5s;
+    }
+    .box:hover img{
+      transform: scale(1.2);
+      transition: .5s;
+    }
+    .btn:hover {
+      transform: scale(1.2);
+      transition: .5s;
+    }
+    .cover-fit{
+      width: auto;
+      height: auto;
+      object-fit: cover;
+    }
+    .button{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+ 
+  a{ 
+    text-decoration:none;
+    
+  } 
+  a:hover{ text-decoration:none}
+
+/* 龍捲風 */
+canvas{
+            position:fixed;
+            width:100%;
+            height:100%;
+        }
+/* 龍捲風 */
+</style>
+<body>
+   
+ 
+    <div class="container">
+        <nav class="navbar navbar-expand-lg p-5 ">
+            <div class="container-fluid d-block text-center ">
+                <a class="navbar-brand  mx-auto " ><h1>   <a><img id=btn class="cover-fit shadow mb-3" src="../images/ip.png"></a><p class="h2 text-light lh-lg" id="demo" ></p></h1></a>
+            </div>
+        
+        </nav>
+    </div>
+            
+         
+            <div class="p-4 ">
+                <!-- 先留白p-5 -->
+                <div class="container">
+                    <div class="row g-4 ">
+                        <!-- 垂直排版時需留白 -->
+                        <div class="col-lg-12 ">
+                                <div class="card bg-secondary text-white bg-opacity-75 text-center" >
+                                    <!-- <div class="stormy" ></div> -->
+                                            <div class="p-1">
+                                            <h2 class="all p-1 lh-lg ">文章分享<div id="luckyMan" class="inline-block"></div></h2>
+                                            <button type="button" class= "btn rounded-pill border border-1 bg-secondary text-white bg-opacity-25  btn-sm mb-3" id="btn1">療癒一下</button>
+                                            
+                                           
+                            
+                            </div>
+                        </div>
+                </div>
+            </div>
+ 
+    <div class="p-4 ">
+        <!-- 先留白p-5 -->
+        <div class="container">
+            <div class="row g-4 ">
+                <!-- 垂直排版時需留白 -->
+                <div class="col-lg-12 ">
+                        <div class="card bg-secondary text-white bg-opacity-75 text-center" >
+                            <!-- <div class="stormy" ></div> -->
+                                    
+                                    <h5 class="text-white mt-3 lh-lg p-1">Design by <a href="https://github.com/herickyhe"><img class="cover-fit shadow " src="../images/github.png"><span> </span>Ricky</a>，Copyright 2022 NTC.im. All rights reserved.</h5>
+                                    </div>
+                                
+                    
+                    </div>
+                </div>
+        </div>
+    </div>
+            
+              <!-- 文章分享js亂數貼出       -->
+        <script>
+           let myArray = [ "《做人先學會低頭》林肯聽說有一位學者非常有智慧，他就特地趕去拜訪他。他抬頭挺胸的跨進門，頭卻狠狠的被門框撞上，他痛得蹲在那裡低頭搓揉。進到屋裡，林肯一邊搓揉著頭，忍住痛，跟智者談了很久，直到林肯要離開的時候，智者才開口講話：「一邊指著門問林肯：「還會痛嗎？一個人想要活得平安快樂，想要夢想成真，你就得隨時記得做人要謙虛，該低頭的時候就要低頭。」" , "《志願與身高高矮無關》博格斯是NBA有史以來最矮的球員，他的身高只有160公分。但是他在球隊的表現很傑出，是個投球精準的實力隊員。身高的缺點，並沒有影響到他向前走的意志或阻力。個子小反而是一種優勢，在運球方面，因個子小運球的重心減低，比較不會失誤。是NBA難得的焦點人物。他的表現，讓那些身材矮小的球迷看著他在球場上飛奔模樣，得到心靈上的鼓舞。" , "《沒有爬不上去的山，只有不想爬的人》有兩個70歲的老太太，其中一個認為到了這個年齡，已是到人生的盡頭，另一個卻是個性開朗又積極，她說一個人想作什麼，只要肯去做，根本沒有年齡的差異。於是，她開始跟著人群學習爬山，70歲開始學習爬山，有點不可想像。而能在95歲登上富士山更是奇蹟，這位勇敢又有毅力的老太太就是史上有名的胡達克魯斯。"];
+
+            let luckyMan = document.getElementById('luckyMan');
+           
+            let btn = document.getElementById('btn1');
+
+            btn.addEventListener('click', RandArray);
+
+            function RandArray(){
+                
+                let choose = getRandom(myArray.length);
+                let rValue = myArray[choose];
+                luckyMan.innerHTML = rValue;
+               
+
+            }
+
+            function getRandom(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+            }
+
+         
+            </script>
+          <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script> -->
+       
+    <!-- 文章分享js亂數貼出       -->
+      <!-- 我的ip位址 -->
+          <script>
+         
+            function get(url,cb){
+                let httpRequest = new XMLHttpRequest();
+                httpRequest.open('GET', url, true);
+                httpRequest.send();
+                httpRequest.onreadystatechange = function () {
+                    if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                        var json = httpRequest.responseText;
+                        cb(json);
+                    } 
+                };	
+            }
+          
+            get("https://api.ipify.org/?format=json",function(data){
+                data=JSON.parse(data);
+             
+                document.getElementById("demo").innerHTML = "My"+ " " + "IP" + " " + "位址" + " " +  ":" + " " + " " +" " +(data.ip);
+            });
+            
+            
+        </script>
+     
+        <!-- 我的ip位址 --> 
+ 
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
+     <!-- 龍捲風 -->
+     <script>
+        // 色碼:
+        // RGB色碼為一個#加上六個數字，其中兩個數字為一組，分別對應到R(Red)G (Green)B (Blue)的數字，每一組數字都是16進位
+        // (這邊看16進位轉換方式)，所以我們有00~ff 總共256種排列方式，分別對應0~255，數值越高就代表對應的顏色色調越重
+        function rgbToString(rgb) {
+            rgb += 0.000001;
+            var r = parseInt((0.5 + Math.sin(rgb) * 0.5) * 16);
+            var g = parseInt((0.5 + Math.cos(rgb) * 0.5) * 16);
+            var b = parseInt((0.5 - Math.sin(rgb) * 0.5) * 16);
+            return "#" + r.toString(16) + g.toString(16) + b.toString(16);
+        }
+        //獲取rgb陣列
+        function rgbArray(col) {
+            col += 0.000001;
+            var r = parseInt((0.5 + Math.sin(col) * 0.5) * 256);
+            var g = parseInt((0.5 + Math.cos(col) * 0.5) * 256);
+            var b = parseInt((0.5 - Math.sin(col) * 0.5) * 256);
+            return [r, g, b];
+        }
+        // 內插函式
+        function interpolateColors(RGB1, RGB2, degree) {
+            var w2 = degree;
+            var w1 = 1 - w2;
+            return [w1 * RGB1[0] + w2 * RGB2[0], w1 * RGB1[1] + w2 * RGB2[1], w1 * RGB1[2] + w2 * RGB2[2]];
+        }
+        // parseInt() 函式能將輸入的字串轉成整數。
+        function colorString(arr) {
+            var r = parseInt(arr[0]);
+            var g = parseInt(arr[1]);
+            var b = parseInt(arr[2]);
+            // slice() 方法會回傳一個新陣列物件，為原陣列選擇之 begin 至 end（不含 end）部分的淺拷貝（shallow copy）。而原本的陣列將不會被修改。
+            return "#" + ("0" + r.toString(16)).slice(-2) + ("0" + g.toString(16)).slice(-2) + ("0" + b.toString(16)).slice(-2);
+        }
+    </script>
+    <script>
+        //獲取點（x,y,z）與原點的線段與y轴形成的角度大小，特殊情况返回默認值0.00000001;
+        function elevation(x, z, y) {
+            var dist = Math.sqrt(x * x + y * y + z * z);//獲取三维點（x,y,z）與原點距離長
+            var num = y / dist;//三维空間的坐標（x,y,z）與原點的線段和y轴形成的角度的餘弦值
+            // &&只有在 兩個運算元都是True 時才會回傳 True，否則回傳 false。
+            if (dist && num >= -1 && num <= 1) return Math.acos(num);//獲取num的反餘弦值，即是上述的角度大小
+            return 0.00000001;
+        }
+        //生成顆粒
+                // Math.sin(x)    x 的正弦值。返回值在 -1.0 到 1.0 之間；
+
+                // Math.cos(x)    x 的餘弦值。返回的是 -1.0 到 1.0 之間的數；
+                // 弧度定義：兩條射線從圓心向圓周射出，形成一個夾角和夾角正對的一段弧，當這段弧長正好等于圓的半徑時，兩條射線的夾角大小為1弧度（單位：rad)。
+
+                // 這兩個函式中的X 都是指的“弧度”而非“角度”，弧度的計算公式為： 2*PI/360*角度；
+
+                // 30° 角度 的弧度 = 2*PI/360*30
+                // 創建粒子
+        function createParticle(vars) {
+            var pt = {};
+            var p = Math.PI * 2 * Math.random();
+            // 分佈半徑
+            var ls = Math.sqrt(Math.random() * vars.distributionRadius);
+            pt.x = Math.sin(p) * ls;
+            // 渦流高度
+            pt.y = -vars.vortexHeight / 2;
+            pt.vy = vars.initV / 20 + Math.random() * vars.initV;
+            pt.z = Math.cos(p) * ls;
+            // 800
+            // Math.random()函式，這個函數會隨機產生出0~1之間的小數
+            pt.radius = 200 + 800 * Math.random();
+            // 1000
+            pt.color = pt.radius / 1000 + vars.frameNumber / 250;
+            vars.points.push(pt);
+        }
+        function project3D(x, y, z, vars) {
+            // x = x - vars.camX
+            x -= vars.camX;
+            y -= vars.camY - 8;
+            z -= vars.camZ;
+            // JavaScript中的Math.atan()函數用於返回以弧度為單位的數字的反正切值。
+            // Math.atan()方法返回介於-pi /2和pi /2弧度之間的數值。
+            // atan()是Math的靜態方法，因此，始終用作Math.atan()，而不是用作創建的Math對象的方法。
+            //返回 x/y 的反正切值，即arctan(x/y)
+            var p = Math.atan2(x, z);
+             //返回 (x * x + z * z)的平方根
+            var d = Math.sqrt(x * x + z * z);
+            x = Math.sin(p - vars.yaw) * d;
+            z = Math.cos(p - vars.yaw) * d;
+            p = Math.atan2(y, z);
+            d = Math.sqrt(y * y + z * z);
+            y = Math.sin(p - vars.pitch) * d;
+            z = Math.cos(p - vars.pitch) * d;
+            // -1000
+            var rx1 = -1000;
+            var ry1 = 1;
+            // 1000
+            var rx2 = 1000;
+            var ry2 = 1;
+            var rx3 = 0;
+            var ry3 = 0;
+            var rx4 = x;
+            var ry4 = z;
+            var uc = (ry4 - ry3) * (rx2 - rx1) - (rx4 - rx3) * (ry2 - ry1);
+            var ua = ((rx4 - rx3) * (ry1 - ry3) - (ry4 - ry3) * (rx1 - rx3)) / uc;
+            var ub = ((rx2 - rx1) * (ry1 - ry3) - (ry2 - ry1) * (rx1 - rx3)) / uc;
+            if (!z) z = 0.000000001;
+            if (ua > 0 && ua < 1 && ub > 0 && ub < 1) {
+                return {
+                    x: vars.cx + (rx1 + ua * (rx2 - rx1)) * vars.scale,
+                    y: vars.cy + y / z * vars.scale,
+                    d: (x * x + y * y + z * z)
+                };
+            }
+            else {
+                return { d: -1 };
+            }
+        }
+        function drawSomeFloor(vars, isFalse) {
+            for (var i = -300; i <= 300; i++) {
+                for (var j = -250; j <= 250; j++) {
+                    var x = i * 2;
+                    var z = j * 2;
+                    var y = -vars.floor;
+                    // Math.sqrt(9); // 3
+                    var d = Math.sqrt(x * x + z * z);
+                    y = y + d * d / 50;//上下背景產生彎曲感
+                    if (isFalse) {
+                        y = -y;
+                    }
+                    var point = project3D(x, y, z, vars);
+                    if (point.d != -1) {
+ 
+                        var rgb1, rgb2; var degree;
+                        var size = 1 + 15000 / (1 + point.d);
+                         //返回d / 50的 4次冪
+                        //  Math.pow() 方法用來做指數運算 。
+                        // 語法 Math.pow(base, exponent)
+                        // 用法：Math.pow(7, 2);  // 49
+                        var a = 0.15 - Math.pow(d / 50, 4) * 0.015;
+                        if (a > 0) {
+                            if (isFalse) {
+                                rgb1 = rgbArray(d / 26 - vars.frameNumber / 40);
+                                rgb2 = [0, 128, 32];
+                                degree = .5 + Math.sin(d / 6 - vars.frameNumber / 8) / 2;
+                            }
+                            else {
+                                rgb1 = rgbArray(-d / 26 - vars.frameNumber / 40);
+                                rgb2 = [32, 0, 128];
+                                degree = .5 + Math.sin(-d / 6 - vars.frameNumber / 8) / 2;
+                            }
+                            vars.context.fillStyle = colorString(interpolateColors(rgb1, rgb2, degree));//選色
+                            vars.context.globalAlpha = a;//透明度
+                            vars.context.fillRect(point.x - size / 2, point.y - size / 2, size, size);//用颜色塗滿方框
+                        }
+                    }
+                }
+            }
+        }
+        //繪制背景效果
+        function drawFloor(vars) {
+            drawSomeFloor(vars, true);//下面背景
+            vars.context.fillStyle = "#82f";
+            drawSomeFloor(vars, false);//上面背景
+        }
+        function sortFunction(a, b) {
+            return b.dist - a.dist;
+        }
+        //繪制顆粒
+        function drawParticles(vars) {
+            vars.context.globalAlpha = .015;
+            vars.context.fillStyle = "#000";
+            vars.context.fillRect(0, 0, vars.canvas.width, vars.canvas.height);
+            var point, x, y, z, a;
+            for (var i = 0; i < vars.points.length; ++i) {
+                x = vars.points[i].x;
+                y = vars.points[i].y;
+                z = vars.points[i].z;
+                point = project3D(x, y, z, vars);
+                if (point.d != -1) {
+                    vars.points[i].dist = point.d;
+                    size = 1 + vars.points[i].radius / (1 + point.d);
+                    d = Math.abs(vars.points[i].y);
+                    a = .8 - Math.pow(d / (vars.vortexHeight / 2), 1000) * .8;
+                    vars.context.globalAlpha = a >= 0 && a <= 1 ? a : 0;
+                    vars.context.fillStyle = rgbToString(vars.points[i].color);
+                    if (point.x > -1 && point.x < vars.canvas.width && point.y > -1 && point.y < vars.canvas.height)
+                        vars.context.fillRect(point.x - size / 2, point.y - size / 2, size, size);
+                }
+            }
+            vars.points.sort(sortFunction);
+        }
+        function process(vars) {
+            if (vars.points.length < vars.MaxParticles)
+                for (var i = 0; i < 5; i++) {
+                    createParticle(vars);
+                }
+            var angle_xz = Math.atan2(vars.camX, vars.camZ)//camX/camZ的反正切值，即對應角度大小
+            //也可： var angle_xz = Math.atan(vars.camX/vars.camZ)
+            //xz頁面上的斜邊長
+            var hypotenuse_xz = Math.sqrt(vars.camX * vars.camX + vars.camZ * vars.camZ);
+            hypotenuse_xz -= Math.sin(vars.frameNumber / 80) / 25;
+            var t = Math.cos(vars.frameNumber / 300) / 165;
+            vars.camX = Math.sin(angle_xz + t) * hypotenuse_xz;
+            vars.camZ = Math.cos(angle_xz + t) * hypotenuse_xz;
+            vars.camY = -Math.sin(vars.frameNumber / 220) * 15;
+            vars.yaw = Math.PI + angle_xz + t;
+            vars.pitch = elevation(vars.camX, vars.camZ, vars.camY) - Math.PI / 2;
+ 
+            for (var i = 0; i < vars.points.length; ++i) {
+                var x = vars.points[i].x;
+                var y = vars.points[i].y;
+                var z = vars.points[i].z;
+                var d = Math.sqrt(x * x + z * z) / 1.0075;
+                var t = .1 / (1 + d * d / 5);
+                var p = Math.atan2(x, z) + t;
+                vars.points[i].x = Math.sin(p) * d;
+                vars.points[i].z = Math.cos(p) * d;
+                vars.points[i].y += vars.points[i].vy * t * ((Math.sqrt(vars.distributionRadius) - d) * 2);
+                if (vars.points[i].y > vars.vortexHeight / 2 || d < .25) {
+                    vars.points.splice(i, 1);
+                    createParticle(vars);
+                }
+            }
+        }
+        //創建設置頁面
+        function createFrame() {
+            var newVars = {};
+            newVars.canvas = document.querySelector("canvas");//回文檔中匹配指定 CSS 選擇器的一個元素
+            newVars.context = newVars.canvas.getContext("2d");
+            //設置畫布的高和寬
+            newVars.canvas.width = document.body.clientWidth;
+            newVars.canvas.height = document.body.clientHeight;
+            newVars.cx = newVars.canvas.width / 2;
+            newVars.cy = newVars.canvas.height / 2;
+            //窗體高寬發生改變時，觸發事件
+            window.onresize = function () {
+                //重新再次設置畫布的高和寬
+                newVars.canvas.width = document.body.clientWidth;
+                newVars.canvas.height = document.body.clientHeight;
+                newVars.cx = newVars.canvas.width / 2;
+                newVars.cy = newVars.canvas.height / 2;
+            }
+ 
+            newVars.frameNumber = 0;
+            newVars.camX = 0;
+            newVars.camY = 0;
+            newVars.camZ = -14;
+            newVars.pitch = elevation(newVars.camX, newVars.camZ, newVars.camY) - Math.PI / 2;
+            newVars.yaw = 0;
+            newVars.bounding = 10;
+            newVars.scale = 500;
+            newVars.floor = 26.5;
+ 
+            newVars.points = [];//點集合
+            newVars.MaxParticles = 500;//最大数量
+            newVars.initV = .01;
+            newVars.distributionRadius = 800;
+            newVars.vortexHeight = 25;
+            return newVars;
+        }
+        //打開頁面
+        function OpenFrame(vars) {
+            if (vars == undefined) {
+                vars = createFrame();
+            }
+            vars.frameNumber++;
+            //頁面重繪之前，通知瀏覽器调用一个指定的函数，以滿足開發者操作動畫的需求,
+            requestAnimationFrame(function () { OpenFrame(vars) });
+ 
+            process(vars);
+            drawFloor(vars);
+            drawParticles(vars);
+        }
+        OpenFrame();
+          /* 龍捲風 */
+          
+    </script> 
+
+      
+</body>
+</html>
